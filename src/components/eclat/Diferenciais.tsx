@@ -24,7 +24,7 @@ export function Diferenciais() {
     <section className="bg-blush py-28 md:py-44">
       <div className="mx-auto max-w-[1600px] px-6 md:px-12">
         <div className="grid gap-16 lg:grid-cols-12">
-          <Reveal className="lg:col-span-4">
+          <Reveal className="lg:col-span-4 lg:sticky lg:top-32 lg:self-start">
             <p className="eclat-kicker">03 — Assinatura</p>
             <h2 className="eclat-display mt-8 text-[clamp(2.5rem,5vw,4.25rem)] text-ink">
               O que nos torna

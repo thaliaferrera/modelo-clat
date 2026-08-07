@@ -30,7 +30,7 @@ export function Depoimentos() {
     <section className="bg-champagne/45 py-28 md:py-44">
       <div className="mx-auto max-w-4xl px-6 text-center md:px-12">
         <p className="eclat-kicker">07 — Depoimentos</p>
-        <div className="relative mt-14 min-h-[16rem] md:min-h-[14rem]">
+        <div className="relative mt-14 min-h-[22rem] md:min-h-[20rem]">
           {vozes.map((v, idx) => (
             <figure
               key={v.nome}
