@@ -1,24 +1,52 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Nav } from "@/components/eclat/Nav";
+import { Hero } from "@/components/eclat/Hero";
+import { Sobre } from "@/components/eclat/Sobre";
+import { Procedimentos } from "@/components/eclat/Procedimentos";
+import { Diferenciais } from "@/components/eclat/Diferenciais";
+import { Resultados } from "@/components/eclat/Resultados";
+import { AntesDepois } from "@/components/eclat/AntesDepois";
+import { Especialistas } from "@/components/eclat/Especialistas";
+import { Depoimentos } from "@/components/eclat/Depoimentos";
+import { Faq } from "@/components/eclat/Faq";
+import { Agendamento } from "@/components/eclat/Agendamento";
+import { Contato } from "@/components/eclat/Contato";
+import { Footer } from "@/components/eclat/Footer";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
+const titulo = "ÉCLAT — Estética Facial de Luxo em São Paulo | Lumina";
+const descricao =
+  "Tratamentos faciais personalizados que realçam sua beleza de forma elegante, segura e natural. Harmonização, botox, preenchimento e bioestimuladores.";
+
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: titulo },
+      { name: "description", content: descricao },
+      { property: "og:title", content: titulo },
+      { property: "og:description", content: descricao },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+    <>
+      <Nav />
+      <main>
+        <Hero />
+        <Sobre />
+        <Procedimentos />
+        <Diferenciais />
+        <Resultados />
+        <AntesDepois />
+        <Especialistas />
+        <Depoimentos />
+        <Faq />
+        <Agendamento />
+        <Contato />
+      </main>
+      <Footer />
+    </>
   );
 }
