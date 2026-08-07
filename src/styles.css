@@ -4,6 +4,22 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* ── ÉCLAT · Lumina — luxury beauty identity ───────────────────── */
+@theme {
+  --font-display: "Italiana", "Times New Roman", serif;
+  --font-body: "Jost", ui-sans-serif, system-ui, sans-serif;
+
+  --color-warmwhite: oklch(1 0 0);
+  --color-ivory: oklch(0.978 0.008 85);
+  --color-champagne: oklch(0.895 0.033 84);
+  --color-blush: oklch(0.933 0.014 33);
+  --color-taupe: oklch(0.716 0.021 60);
+  --color-gold: oklch(0.735 0.075 76);
+  --color-ink: oklch(0.29 0.008 60);
+
+  --shadow-luxe: 0 40px 80px -50px oklch(0.4 0.03 60 / 0.45);
+}
+
 /*
  * Design system definition.
  *
@@ -62,7 +78,11 @@
 }
 
 :root {
-  --radius: 0.625rem;
+  --radius: 0.125rem;
+  --eclat-ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+:root {
   --background: oklch(1 0 0);
   --foreground: oklch(0.129 0.042 264.695);
   --card: oklch(1 0 0);
@@ -138,7 +158,89 @@
   }
 
   body {
-    background-color: var(--color-background);
-    color: var(--color-foreground);
+    background-color: var(--color-ivory);
+    color: var(--color-ink);
+    font-family: var(--font-body);
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  ::selection {
+    background: var(--color-champagne);
+    color: var(--color-ink);
+  }
+}
+
+@utility eclat-kicker {
+  font-family: var(--font-body);
+  font-size: 0.6875rem;
+  font-weight: 400;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  color: var(--color-taupe);
+}
+
+@utility eclat-display {
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: 0.95;
+  letter-spacing: -0.005em;
+}
+
+@utility eclat-rule {
+  height: 1px;
+  width: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in oklab, var(--color-gold) 55%, transparent) 12%,
+    color-mix(in oklab, var(--color-gold) 55%, transparent) 88%,
+    transparent
+  );
+}
+
+@utility eclat-reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 1.2s var(--eclat-ease),
+    transform 1.2s var(--eclat-ease);
+
+  &[data-shown="true"] {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@utility eclat-veil {
+  clip-path: inset(0 0 100% 0);
+  transition: clip-path 1.6s var(--eclat-ease);
+
+  &[data-shown="true"] {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@utility eclat-link {
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -0.35em;
+    height: 1px;
+    width: 100%;
+    background: var(--color-gold);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.7s var(--eclat-ease);
+  }
+  &:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
   }
 }
