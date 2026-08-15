@@ -19,11 +19,34 @@ export function Contato() {
               <div className="border-t border-gold/30 pt-8">
                 <h3 className="eclat-kicker text-[0.6rem]">{t}</h3>
                 <ul className="mt-6 space-y-2">
-                  {linhas.map((l) => (
-                    <li key={l} className="eclat-display text-2xl text-ink md:text-3xl">
-                      {l}
-                    </li>
-                  ))}
+                  {linhas.map((l) => {
+                    const isEmail = l.includes("@");
+                    const isTel = /^\+?\d[\d\s.-]*\d$/.test(l);
+                    const itemClass = "eclat-display text-2xl text-ink md:text-3xl";
+                    if (isEmail) {
+                      return (
+                        <li key={l}>
+                          <a href={`mailto:${l}`} className={itemClass}>
+                            {l}
+                          </a>
+                        </li>
+                      );
+                    }
+                    if (isTel) {
+                      return (
+                        <li key={l}>
+                          <a href={`tel:${l.replace(/[^\d+]/g, "")}`} className={itemClass}>
+                            {l}
+                          </a>
+                        </li>
+                      );
+                    }
+                    return (
+                      <li key={l} className={itemClass}>
+                        {l}
+                      </li>
+                    );
+                  })}
                 </ul>
               </div>
             </Reveal>
