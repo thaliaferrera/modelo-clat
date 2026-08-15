@@ -48,6 +48,8 @@ export function Faq() {
                     type="button"
                     onClick={() => setOpen(aberto ? null : i)}
                     aria-expanded={aberto}
+                    aria-controls={`faq-painel-${i}`}
+                    id={`faq-botao-${i}`}
                     className="grid w-full grid-cols-[minmax(0,1fr)_auto] items-center gap-6 py-8 text-left"
                   >
                     <span className="eclat-display min-w-0 text-2xl text-ink md:text-3xl">{q}</span>
@@ -60,6 +62,9 @@ export function Faq() {
                     </span>
                   </button>
                   <div
+                    id={`faq-painel-${i}`}
+                    role="region"
+                    aria-labelledby={`faq-botao-${i}`}
                     className={`grid transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
                       aberto ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
                     }`}
